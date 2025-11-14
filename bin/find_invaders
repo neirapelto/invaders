@@ -28,19 +28,6 @@ invader2 = <<~PATTERN
   o-o--o-o
 PATTERN
 
-# Additional invader patterns added for testing
-
-invader3 = <<~PATTERN
-  ---o-
-  ---o-
-  ---o-
-PATTERN
-
-invader4 = <<~PATTERN
-  --oooooo-
-  -oo--o-oo
-  ooooooooo
-PATTERN
 
 # Radar sample as multi-line string:
 
@@ -97,22 +84,20 @@ radar_sample = <<~RADAR
   -----o----------ooooooooo--------------oo--------------oo-----o-----o-o--o------o----------o----o---
 RADAR
 
+# Create a new invader checker with a threshold of 0.8
 checker = InvaderChecker.new(threshold: 0.8)
 
+# Find the matches for the first invader
 matches1 = checker.find_invader(invader1, radar_sample)
+# Find the matches for the second invader
 matches2 = checker.find_invader(invader2, radar_sample)
-matches3 = checker.find_invader(invader3, radar_sample)
-matches4 = checker.find_invader(invader4, radar_sample)
 
+# Print the results
 puts "Found invader 1 at #{matches1.length} location(s):"
+# Loop over each match and print the row and column
 matches1.each { |match| puts "  Row: #{match[:row]}, Col: #{match[:col]}" }
 
 puts "\nFound invader 2 at #{matches2.length} location(s):"
 matches2.each { |match| puts "  Row: #{match[:row]}, Col: #{match[:col]}" }
 
-puts "\nFound invader 3 at #{matches3.length} location(s):"
-matches3.each { |match| puts "  Row: #{match[:row]}, Col: #{match[:col]}" }
-
-puts "\nFound invader 4 at #{matches4.length} location(s):"
-matches4.each { |match| puts "  Row: #{match[:row]}, Col: #{match[:col]}" }
 
